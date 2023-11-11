@@ -1,1 +1,48 @@
+seudocode for Focus Stacking and 3D Model Photography Project
+Import necessary libraries
+(e.g., OpenCV for image processing, NumPy for numerical operations, etc.)
+import cv2
+import numpy as np
+Other necessary libraries
+Function to perform focus stacking
+def focus_stacking(images):
+    # Process images to create a fully focused image
+    # Implement focus stacking using Laplacian pyramids or other methods
+    focused_image = None  # Placeholder for the final focused image
+    # Detailed implementation goes here
+    return focused_image
+
+Function to implement depth mapping and create 3D model
+def depth_mapping(images):
+    # Process images to create depth maps
+    # Implement depth mapping using weighted sharpness or contrast
+    # Create 3D model based on depth maps
+    model_3d = None  # Placeholder for the 3D model
+    # Detailed implementation goes here
+    return model_3d
+
+Main function
+def main():
+    # Load images
+    images = []  # List to store images
+    # Code to load images goes here
+
+    # Phase 1: Focus Stacking
+    focused_image = focus_stacking(images)
+
+    # Save or display the focused image
+    # Code to save/display image goes here
+
+    # Phase 2: Depth Mapping and 3D Model Creation
+    model_3d = depth_mapping(images)
+
+    # Save or display the 3D model
+    # Code to save/display 3D model goes here
+
+    # Creation of final report and evaluation
+    # Code to generate report and evaluate results goes here
+
+Run the main function
+if name == "main":
+    main()
 
