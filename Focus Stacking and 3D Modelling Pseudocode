@@ -6,10 +6,20 @@ import numpy as np
 Other necessary libraries
 Function to perform focus stacking
 def focus_stacking(images):
-    # Process images to create a fully focused image
-    # Implement focus stacking using Laplacian pyramids or other methods
-    focused_image = None  # Placeholder for the final focused image
-    # Detailed implementation goes here
+    # Convert images to grayscale for processing
+    gray_images = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in images]
+
+    # Apply Laplacian filter to each image to detect edges
+    laplacian_images = [cv2.Laplacian(img, cv2.CV_64F) for img in gray_images]
+
+    # Initialize empty array for final focused image
+    focused_image = np.zeros_like(images[0])
+
+    # Combine images based on the sharpest areas
+    for laplacian, image in zip(laplacian_images, images):
+        _, mask = cv2.threshold(np.abs(laplacian), 0, 255, cv2.THRESH_BINARY)
+        focused_image = np.where(mask[..., None].astype(bool), image, focused_image)
+
     return focused_image
 
 Function to implement depth mapping and create 3D model
