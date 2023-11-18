@@ -5,10 +5,28 @@ import cv2
 import numpy as np
 Other necessary libraries
 
+def align_images(images)
+    # Resize and transform the images and output the images of the same size
+    # Detailed Code :
+    # Convert images to grayscale
+    # Detect ORB features and compute descriptors 
+    # Match Features and pick the top matches
+    # Find Homography and apply the homography to the picture
+    # Repeat the process for another picture
+
+
 
 #Function to perform focus stacking
 def focus_stacking(images):
     # Convert images to grayscale for processing
+    Align all the images 
+    Get Laplacian pyramid for all the images stack 
+    Level-wise fusing of the Laplacian Pyramids
+    Image reconstructed by applying the reverse laplacian pyramid transformation 
+
+
+
+
     gray_images = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in images]
 
     # Apply Laplacian filter to each image to detect edges
