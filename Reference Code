@@ -1,1 +1,26 @@
+def get_pyramids(original_img, img, sigma):
+  gaussian_kernel = utils.gaussian_kernel(sigma, sigma * 3)
+  g = cv2.filter2D(img, -1, gaussian_kernel)
+  l = original_img - g
+  return g, l
 
+
+
+
+def subsample(img):
+  rows, cols = map(int, hybrid_result.shape)
+  return cv2.resize(img, (0,0), fx=0.5, fy=0.5)
+  g0 = cv2.filter2D(hybrid_result, -1, utils.gaussian_kernel(10, 30))
+  l0 = hybrid_result - g0
+  g1, l1 = get_pyramids(subsample(g0), subsample(g0), 1)
+  g2, l2 = get_pyramids(subsample(g1), subsample(g1), 1)
+  g3, l3 = get_pyramids(subsample(g2), subsample(g2), 1)
+  g4, l4 = get_pyramids(subsample(g3), subsample(g3), 1)
+
+  g_arr = [g0, g1, g2, g3, g4]
+  l_arr = [l0, l1, l2, l3, l4]
+  # Gaussian Pyramids
+  fig, axes = plt.subplots(1, 5)
+  fig.set_dpi(300)
+  for i in range(0, 5):
+     axes[i].imshow(g_arr[i],cmap='gray')
