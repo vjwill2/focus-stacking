@@ -13,12 +13,10 @@ def align_images(images)
         # Match Features and pick the top matches
         # Find Homography and apply the homography to the picture
         # Repeat the process for another picture
-
     # Loop through the images
         #Find any black edges and compare with all the pictures, remove and crop the picture
     #return images
         
-
 def denoise_images(images)
     # Denoise using cv2.fastNlMeansDenoisingColored( P1, P2, float P3, float P4, int P5, int P6)
 
