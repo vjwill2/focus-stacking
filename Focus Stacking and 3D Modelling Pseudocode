@@ -5,10 +5,29 @@ import cv2
 import numpy as np
 Other necessary libraries
 
+def align_images(images)
+    # Resize and transform the images and output the images of the same size
+    # Detailed Code :
+    # Convert images to grayscale
+        # Detect Euclidean features and compute descriptors 
+        # Match Features and pick the top matches
+        # Find Homography and apply the homography to the picture
+        # Repeat the process for another picture
+    # Loop through the images
+        #Find any black edges and compare with all the pictures, remove and crop the picture
+    #return images
+        
+def denoise_images(images)
+    # Denoise using cv2.fastNlMeansDenoisingColored( P1, P2, float P3, float P4, int P5, int P6)
 
 #Function to perform focus stacking
 def focus_stacking(images):
     # Convert images to grayscale for processing
+    Align all the images 
+    Get Laplacian pyramid for all the images stack 
+    Level-wise fusing of the Laplacian Pyramids
+    Image reconstructed by applying the reverse laplacian pyramid transformation 
+
     gray_images = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in images]
 
     # Apply Laplacian filter to each image to detect edges
@@ -30,7 +49,8 @@ def depth_mapping(images):
     # Implement depth mapping using weighted sharpness or contrast
     # Create 3D model based on depth maps
     model_3d = None  # Placeholder for the 3D model
-    # Detailed implementation goes here 
+    # Detailed implementation goes here
+        
     return model_3d
 
 Function to create 3D model using Standard model (Bennet and Deeya to explore)
