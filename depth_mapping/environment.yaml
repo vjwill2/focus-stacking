@@ -1,0 +1,11 @@
+name: c:\Users\Bennett\Documents\Documents\1. School\2. Fall 2023\CS 445\Final Project\focus-stacking\depth_mapping\.conda
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - ipykernel
+  - matplotlib
+  - numpy
+  - opencv
+  - scipy
+prefix: c:\Users\Bennett\Documents\Documents\1. School\2. Fall 2023\CS 445\Final Project\focus-stacking\depth_mapping\.conda
