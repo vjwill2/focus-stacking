@@ -1,49 +1,90 @@
-Pseudocode for Focus Stacking and 3D Model Photography Project
-Import necessary libraries
-(e.g., OpenCV for image processing, NumPy for numerical operations, etc.)
 import cv2
 import numpy as np
-Other necessary libraries
+import os
 
-def align_images(images)
-    # Resize and transform the images and output the images of the same size
-    # Detailed Code :
-    # Convert images to grayscale
-        # Detect Euclidean features and compute descriptors 
-        # Match Features and pick the top matches
-        # Find Homography and apply the homography to the picture
-        # Repeat the process for another picture
-    # Loop through the images
-        #Find any black edges and compare with all the pictures, remove and crop the picture
-    #return images
+def align_images(images):
+    # Convert the first image to grayscale as a reference
+    ref_image_gray = cv2.cvtColor(images[0], cv2.COLOR_BGR2GRAY)
+    
+    # Initialize ORB detector
+    orb = cv2.ORB_create()
+    
+    # Detect and compute keypoints and descriptors for the reference image
+    keypoints_ref, descriptors_ref = orb.detectAndCompute(ref_image_gray, None)
+    
+    # Initialize FLANN based matcher
+    FLANN_INDEX_LSH = 6
+    index_params = dict(algorithm = FLANN_INDEX_LSH,
+                        table_number = 6,
+                        key_size = 12,
+                        multi_probe_level = 1)
+    search_params = dict(checks = 50)
+    flann = cv2.FlannBasedMatcher(index_params, search_params)
+
+    aligned_images = [images[0]]  # First image is the reference
+
+    for img in images[1:]:
+        # Convert image to grayscale
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         
-def denoise_images(images)
-    # Denoise using cv2.fastNlMeansDenoisingColored( P1, P2, float P3, float P4, int P5, int P6)
+        # Detect keypoints and compute descriptors
+        keypoints, descriptors = orb.detectAndCompute(gray, None)
+        
+        # Match features using FLANN matcher
+        matches = flann.knnMatch(descriptors_ref, descriptors, k=2)
+
+        # Filter matches using the Lowe's ratio test
+        good_matches = []
+        for m, n in matches:
+            if m.distance < 0.7 * n.distance:
+                good_matches.append(m)
+
+        # Minimum number of matches to consider for homography
+        MIN_MATCH_COUNT = 10
+        if len(good_matches) > MIN_MATCH_COUNT:
+            src_pts = np.float32([keypoints_ref[m.queryIdx].pt for m in good_matches]).reshape(-1,1,2)
+            dst_pts = np.float32([keypoints[m.trainIdx].pt for m in good_matches]).reshape(-1,1,2)
+
+            # Find homography
+            H, _ = cv2.findHomography(dst_pts, src_pts, cv2.RANSAC, 5.0)
+            
+            # Apply homography to align images
+            h, w, _ = images[0].shape
+            aligned_img = cv2.warpPerspective(img, H, (w, h))
+
+            # Crop black edges if necessary
+            # ... (code for cropping black edges)
+
+            aligned_images.append(aligned_img)
+        else:
+            print(f"Not enough matches are found - {len(good_matches)}/{MIN_MATCH_COUNT}")
+            aligned_images.append(img)
+
+    return aligned_images
+        
 
 #Function to perform focus stacking
 def focus_stacking(images):
     # Convert images to grayscale for processing
-    Align all the images 
-    Get Laplacian pyramid for all the images stack 
-    Level-wise fusing of the Laplacian Pyramids
-    Image reconstructed by applying the reverse laplacian pyramid transformation 
+    # First, align all images
+    aligned_images = align_images(images)
 
-    gray_images = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in images]
+    # Convert images to grayscale for edge detection
+    gray_images = [cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) for img in aligned_images]
 
     # Apply Laplacian filter to each image to detect edges
     laplacian_images = [cv2.Laplacian(img, cv2.CV_64F) for img in gray_images]
 
-    # Initialize empty array for final focused image
-    focused_image = np.zeros_like(images[0])
+    # Initialize an empty array for the final focused image
+    focused_image = np.zeros_like(aligned_images[0])
 
     # Combine images based on the sharpest areas
-    for laplacian, image in zip(laplacian_images, images):
+    for laplacian, image in zip(laplacian_images, aligned_images):
         _, mask = cv2.threshold(np.abs(laplacian), 0, 255, cv2.THRESH_BINARY)
         focused_image = np.where(mask[..., None].astype(bool), image, focused_image)
 
     return focused_image
 
-Function to implement depth mapping and create 3D model
 def depth_mapping(images):
     # Process images to create depth maps
     # Implement depth mapping using weighted sharpness or contrast
@@ -53,7 +94,6 @@ def depth_mapping(images):
         
     return model_3d
 
-Function to create 3D model using Standard model (Bennet and Deeya to explore)
 def create_3d_model(image):
     # Process images to create the 3D model
     # Create 3D model based based on the image provided
@@ -61,17 +101,32 @@ def create_3d_model(image):
     # Detailed implementation goes here
     return model_3d
 
-Main function
 def main():
-    # Load images
-    images = []  # List to store images
-    # Code to load images goes here
+    # Directory containing images
+    image_directory = 'images'
+    image_files = os.listdir(image_directory)
+
+    images = []
+    for file in image_files:
+        img_path = os.path.join(image_directory, file)
+        img = cv2.imread(img_path)
+        if img is not None:
+            images.append(img)
+
+    # Check if images were loaded
+    if not images:
+        print("No images found in the directory.")
+        return
 
     # Phase 1: Focus Stacking
     focused_image = focus_stacking(images)
 
     # Save or display the focused image
-    # Code to save/display image goes here
+    output_path = 'path/to/save/focused_image.jpg'
+    cv2.imwrite(output_path, focused_image)
+    # cv2.imshow('Focused Image', focused_image)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
 
     # Phase 2: Depth Mapping and 3D Model Creation
     model_3d = depth_mapping(images)
@@ -82,7 +137,4 @@ def main():
     # Creation of final report and evaluation
     # Code to generate report and evaluate results goes here
 
-Run the main function
-if name == "main":
-    main()
-
+main()
