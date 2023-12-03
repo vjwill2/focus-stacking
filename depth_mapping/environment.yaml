@@ -1,4 +1,4 @@
-name: c:\Users\Bennett\Documents\Documents\1. School\2. Fall 2023\CS 445\Final Project\focus-stacking\depth_mapping\.conda
+name: C:\Users\Bennett\Documents\Documents\1. School\2. Fall 2023\CS 445\Final Project\focus-stacking\depth_mapping\.conda
 channels:
   - defaults
 dependencies:
@@ -7,4 +7,4 @@ dependencies:
   - matplotlib
   - numpy
   - opencv
-prefix: c:\Users\Bennett\Documents\Documents\1. School\2. Fall 2023\CS 445\Final Project\focus-stacking\depth_mapping\.conda
+prefix: C:\Users\Bennett\Documents\Documents\1. School\2. Fall 2023\CS 445\Final Project\focus-stacking\depth_mapping\.conda
