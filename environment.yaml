@@ -1,0 +1,11 @@
+name: c:\Users\Bennett\Documents\Documents\1. School\2. Fall 2023\CS 445\Final Project\focus-stacking\.conda
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - ipykernel
+  - matplotlib
+  - numpy
+  - opencv
+  - scikit-image
+prefix: c:\Users\Bennett\Documents\Documents\1. School\2. Fall 2023\CS 445\Final Project\focus-stacking\.conda

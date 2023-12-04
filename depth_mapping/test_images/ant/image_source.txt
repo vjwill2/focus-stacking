@@ -1,5 +1,0 @@
-Ant images sourced from:
-http://grail.cs.washington.edu/projects/photomontage/
-Their paper state images are courtesy John Longino, Evergreen College
-
-Direct Download Link: http://grail.cs.washington.edu/projects/photomontage/data/bug.zip

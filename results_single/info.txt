@@ -1,0 +1,8 @@
+Generated using Stable Diffusion WebUI (https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+Utilizing extension depth mapping extension (https://github.com/thygate/stable-diffusion-webui-depthmap-script)
+
+Settings used: "res101" model with BOOST (multi-resolution merging) enabled
+
+Underlying model comes from: 
+Yin, Wei, Jianming Zhang, Oliver Wang, Simon Niklaus, Simon Chen, et al. "Towards Accurate Reconstruction of 3D Scene Shape from A Single Monocular Image". TPAMI, 2022. 
+(https://github.com/aim-uofa/AdelaiDepth/tree/main/LeReS)
