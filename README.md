@@ -6,25 +6,30 @@ An implemenation of laplacian focus stacking and 3d depth mapping from an image 
 
 ### Prerequisites
 
-* Python 3 (Tested with 3.11)
-* matplotlib
-* numpy
-* opencv
-* sciki-image
+* Ensure you have a Python 3 environment (Tested with 3.11) setup with the following packages:
+  * matplotlib
+  * numpy
+  * opencv
+  * sciki-image
+* An `environment.yaml` config file is provided for conda environments
 
 ### Usage
 
-To generate the naive project results:
-- upload **both** the ipnyb file to Google Colab
-- make sure to adjust the path to adjust to where the file is located
-- alternatively, it may be run using this shared link: https://drive.google.com/drive/folders/1kEQG2Etn4phA9W6Wttp1GGGvR6vHn9wk?usp=sharing
-
-
-To generate project results, run:
+To generate all project results, run:
 
 ```bash
 python generate_results.py
 ```
+
+* Results can then be found in `./results_naive` for naive approach, `./results_laplacian` for laplacian, and `./results_stack` for 3d depth mapping
+* Exact arguments used are defined in the `generate_results.py` script
+
+### About
+
+* `depth_mapping.py` - Script containing 3D depth mapping implementation
+* `naive_approach.py` - Script containing naive focus stacking implementation
+* `laplacian_stacking.py` - Script containing laplacian focus stacking implementation
+* `generate_results.py` - Script containing arguments 
 
 ## Authors
 
