@@ -14,6 +14,12 @@ An implemenation of laplacian focus stacking and 3d depth mapping from an image 
 
 ### Usage
 
+To generate the naive project results:
+- upload **both** the ipnyb file to Google Colab
+- make sure to adjust the path to adjust to where the file is located
+- alternatively, it may be run using this shared link: https://drive.google.com/drive/folders/1kEQG2Etn4phA9W6Wttp1GGGvR6vHn9wk?usp=sharing
+
+
 To generate project results, run:
 
 ```bash
