@@ -1,6 +1,6 @@
 # CS 445 Final Project - Focus Stacking
 
-An implemenation of laplacian focus stacking and 3d depth mapping from an image stack. 
+An implementation of Laplacian Focus Stacking and 3D Depth Mapping from an image stack. 
 
 ## Getting Started
 
