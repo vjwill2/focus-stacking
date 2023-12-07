@@ -6,7 +6,7 @@ An implemenation of laplacian focus stacking and 3d depth mapping from an image 
 
 ### Prerequisites
 
-* Ensure you have a Python 3 environment (Tested with 3.11) setup with the following packages:
+* Ensure you have a Python 3 environment (Tested with 3.11) set up with the following packages:
   * matplotlib
   * numpy
   * opencv
@@ -22,7 +22,7 @@ python generate_results.py
 ```
 
 * Results can then be found in `./results_naive` for naive approach, `./results_laplacian` for laplacian, and `./results_stack` for 3d depth mapping
-* Exact arguments used are defined in the `generate_results.py` script
+* Exact arguments used to generate results for each method are defined in the `generate_results.py` script
 
 ### About
 
