@@ -28,7 +28,7 @@ python generate_results.py
 
 * `depth_mapping.py` - Script containing 3D depth mapping implementation
 * `naive_approach.py` - Script containing naive focus stacking implementation
-* `laplacian_stacking.py` - Script containing laplacian focus stacking implementation
+* `focus_stacking.py` - Script containing laplacian focus stacking implementation
 * `generate_results.py` - Script containing arguments 
 
 ## Authors
