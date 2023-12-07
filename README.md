@@ -21,7 +21,7 @@ To generate all project results, run:
 python generate_results.py
 ```
 
-* Results can then be found in `./results_naive` for naive approach, `./results_laplacian` for laplacian, and `./results_stack` for 3d depth mapping
+* Results can then be found in `./results_naive` for naive approach, `./results_focus` for laplacian, and `./results_stack` for 3d depth mapping
 * Exact arguments used to generate results for each method are defined in the `generate_results.py` script
 
 ### About
