@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from naive_approach import naive_blend
 from depth_mapping import depth_mapping, DepthMapArgs
 from utils import load_image, plt_img, save_fig, save_img
-
+from focus_stacking import focus_stacking
 
 def main():
     #################### Ant Results ####################
@@ -26,6 +26,7 @@ def main():
     gen_results_naive(name, images, alpha=0.5)
 
     ##### Laplacian Pyramid Focus Stacking Results #####
+    gen_results_focus(name, images)
 
     ##### Depth Mapping Results #####
     # Configure arguments
@@ -51,6 +52,7 @@ def main():
     gen_results_naive(name, images, alpha=0.5)
 
     ##### Laplacian Pyramid Focus Stacking Results #####
+    gen_results_focus(name, images)
 
     ##### Depth Mapping Results #####
     # Configure arguments
@@ -109,6 +111,16 @@ def gen_results_depth(name, images, focal_depths, args):
     plt_img(ax, bg_mask)
     save_fig(f'./results_stack/{name}/bg_mask.png', fig)
     plt.close(fig)
+
+def gen_results_focus(name, images):
+    '''
+    Generates focus results for given images
+    '''
+    print(f"Focus Stacking: {name}")
+    stack = focus_stacking(images)
+
+    # Save results
+    save_img(f'./results_focus/{name}/focus_stack.png', stack)
 
 
 if __name__ == '__main__':
