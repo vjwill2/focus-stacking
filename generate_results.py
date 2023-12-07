@@ -7,6 +7,7 @@ from depth_mapping import depth_mapping, DepthMapArgs
 from utils import load_image, plt_img, save_fig, save_img
 from focus_stacking import focus_stacking
 
+
 def main():
     #################### Ant Results ####################
     # Load images
@@ -107,7 +108,7 @@ def gen_results_focus(name, images):
     '''
     Generates focus results for given images
     '''
-    print(f"Focus Stacking: {name}")
+    print(f"\nFocus Stacking: {name}")
     stack = focus_stacking(images)
 
     # Save results
