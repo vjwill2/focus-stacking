@@ -72,16 +72,6 @@ def gen_results_naive(name, images, alpha):
     save_img(f"./results_naive/{name}.png", stack)
 
 
-def gen_results_laplacian(name, images):
-    '''
-    Generates laplacian blending results for given images
-    '''
-    print(f"\nLaplacian Blenlding: {name}")
-    stack = images # call stacking function
-
-    save_img(f"./results_laplacian/{name}.png", stack)
-
-
 def gen_results_depth(name, images, focal_depths, args):
     '''
     Generates depth mapping results for given images
@@ -112,6 +102,7 @@ def gen_results_depth(name, images, focal_depths, args):
     save_fig(f'./results_stack/{name}/bg_mask.png', fig)
     plt.close(fig)
 
+
 def gen_results_focus(name, images):
     '''
     Generates focus results for given images
@@ -120,7 +111,7 @@ def gen_results_focus(name, images):
     stack = focus_stacking(images)
 
     # Save results
-    save_img(f'./results_focus/{name}/focus_stack.png', stack)
+    save_img(f'./results_focus/{name}.png', stack)
 
 
 if __name__ == '__main__':
